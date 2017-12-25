@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="漫画のEPUB作成サイト" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/FixedEpub3JS/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/FixedEpub3JS/twittercard.jpg" />
+<meta property="og:site_name" content="FixedLayout Epub3.js" />
+<meta property="og:description" content="kobo、bookwalker、Kindle、iBooks向けの漫画のEPUB作成サイト" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="漫画のEPUB作成サイト">
+<meta name="twitter:description" content="kobo、bookwalker、Kindle、iBooks向けの漫画のEPUB作成サイト">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/FixedEpub3JS/twittercard.jpg">
+
+    <title>FixedLayout Epub3.js</title>
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- 追加した部分 -->
+       <script type="text/javascript" src="js/jszip.min.js"></script>
+       <script type="text/javascript" src="js/FileSaver.js"></script>
+       <script type="text/javascript" src="js/uuid.js"></script>
+       <script type="text/javascript" src="js/dendenconv.js"></script>
+       <script type="text/javascript" src="js/vkbeautify.js"></script>
+              <script type="text/javascript" src="js/marked.min.js"></script>
+  </head>
+  <body >
+      <!-- ナビゲーション -->
+  <nav class="navbar navbar-default">
+	<div class="container-fluid ">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+		</div>
+		
+		<div class="collapse navbar-collapse" id="navbarEexample">
+			<ul class="nav navbar-nav">
+				<li ><a href="./about.html">使い方</a></li>
+				<li><a href="http://99nyorituryo.hatenablog.com/">作者ブログ</a></li>
+				<li ><a href="http://99nyorituryo.hatenablog.com/archive/category/Fixed%20Layout%20EPUB3">関連する記事</a></li>
+				<li><a href="https://github.com/kyukyunyorituryo/FixedEpub3JS">GitHub</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class=" col-sm-2"></div>
+      <div id="bg"class="container bg-info col-sm-7">
+
+
+      <h2>漫画のEPUB３を作成する</h2>
+      <h3>本の形式</h3>
+      	<div class="form-group ">
+<p class="control-label"><b>文字方向</b></p>
+      <label class="label label-primary">ページ方向</label>
+      <label class="checkbox-inline"><input type="radio" name="radio" id="binding-rtl" value="radio1" checked="">縦書き</label>
+<label class="checkbox-inline"><input type="radio" name="radio" id="binding-ltr" value="radio2">横書き</label>
+     </div>
+
+ <h3>本の情報の入力</h3>
+ 	<div class="form-group ">
+          <label class="label label-primary">表題</label>
+          <input  type="text" class="form-control " id="title"placeholder="タイトル名">
+          
+          <label class="label label-primary">著者１</label>
+          <input   type="text" class="form-control" id="author1" placeholder="著者名１">
+
+          <label class="label label-primary">表紙画像</label>
+          <input type="file" id="coverfile" name="coverfile" accept="image/png,image/jpeg">
+          <output id="coverthumb"></output>
+
+</div>
+<style>
+  .thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>
+  <div >
+<label class="label label-primary">本文ファイルの読み込み</label>
+<input type="file" id="files" name="files[]" multiple="multiple" accept="image/png,image/jpeg,text/plain">
+<output id="list"></output>
+
+    <h3>ファイルの出力</h3>
+ 
+<button id="demo" class="btn btn-primary">保存</button>
+    <h3>EPUBビュワー</h3>
+    <label class="label label-primary" >クリックしドラッグアンドドロップでEPUBを確認する</label></br>
+<a class="btn btn-info" href="bib/i/index.html" target="_blank">EPUBビュワーBiB/i（ビビ）</a>
+<span id="status"></span>
+    <!-- モーダルの設定です -->
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">プレビュー</h4>
+          </div>
+          <div class="modal-body">
+            <img src="" id="imagepreview" class="img-responsive" >
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /modal -->
+</div>
+
+  </body>
+</html>
