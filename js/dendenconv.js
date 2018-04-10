@@ -50,9 +50,10 @@ image.src = e.target.result;
 image.onload = function() {
 console.log(image.width);
 console.log(image.height);
-document.getElementById("imgwidth").value=image.width;
-document.getElementById("imgheight").value=image.height;
-
+//document.getElementById("imgwidth").value=image.width;
+//document.getElementById("imgheight").value=image.height;
+coverFO.width=image.width;
+coverFO.height=image.height;
 };
         };
       })(f);
@@ -122,7 +123,7 @@ text=txtFO[0].data;
  
 //EPUB３テンプレート
 var containerXML ='<?xml version="1.0" encoding="UTF-8"?>\n<container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0">\n<rootfiles>\n<rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>\n</rootfiles>\n</container>';
-var standardOPF = '<?xml version="1.0" encoding="UTF-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="identifier0" version="3.0" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">\n<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">\n<dc:identifier id="identifier0">urn:uuid:0ecb8661-1eca-4685-8c3b-e0f67b9d1c96</dc:identifier>\n<meta refines="#identifier0" property="identifier-type" scheme="xsd:string">uuid</meta>\n<dc:title id="title0">タイトル</dc:title>\n<meta refines="#title0" property="display-seq">1</meta>\n<dc:creator id="creator0">著者</dc:creator>\n<meta refines="#creator0" property="display-seq">1</meta>\n<dc:format>application/epub+zip</dc:format>\n<dc:language>ja</dc:language>\n<meta property="ibooks:specified-fonts">true</meta>\n<meta property="dcterms:modified">時間</meta>\n<meta name="cover" content="_cover.png" />\n</metadata>\n<manifest>\n<item media-type="image/png" href="cover.png" id="_cover.png" properties="cover-image" />\n<item media-type="text/css" href="template.css" id="_template.css" />\n<item media-type="text/css" href="style.css" id="_style.css" />\n<item media-type="application/xhtml+xml" href="cover.xhtml" id="_cover.xhtml" properties="svg" />\n<item media-type="application/xhtml+xml" href="nav.xhtml" id="_nav.xhtml" properties="nav" />\n<item media-type="application/xhtml+xml" href="bodymatter_0_0.xhtml" id="_bodymatter_0_0.xhtml" />\n<item media-type="image/png" href="fig01.png" id="_fig01.png" />\n<item media-type="application/x-dtbncx+xml" href="toc.ncx" id="_toc.ncx" />\n</manifest>\n<spine page-progression-direction="rtl" toc="_toc.ncx">\n<itemref idref="_cover.xhtml" linear="no" />\n<itemref idref="_nav.xhtml" />\n<itemref idref="_bodymatter_0_0.xhtml" />\n</spine>\n<guide>\n<reference type="cover" title="表紙" href="cover.xhtml" />\n<reference type="toc" title="目次" href="nav.xhtml" />\n<reference type="text" title="本文" href="bodymatter_0_0.xhtml" />\n</guide>\n</package>';
+var standardOPF = '<?xml version="1.0" encoding="UTF-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="identifier0" version="3.0" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">\n<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">\n<dc:identifier id="identifier0">urn:uuid:0ecb8661-1eca-4685-8c3b-e0f67b9d1c96</dc:identifier>\n<meta refines="#identifier0" property="identifier-type" scheme="xsd:string">uuid</meta>\n<dc:title id="title0">タイトル</dc:title>\n<meta refines="#title0" property="display-seq">1</meta>\n<dc:creator id="creator0">著者</dc:creator>\n<meta refines="#creator0" property="display-seq">1</meta>\n<dc:format>application/epub+zip</dc:format>\n<dc:language>ja</dc:language>\n<meta property="ibooks:specified-fonts">true</meta>\n<meta property="dcterms:modified">時間</meta>\n<meta name="cover" content="_cover.png" />\n</metadata>\n<manifest>\n<item media-type="text/css" href="template.css" id="_template.css" />\n<item media-type="text/css" href="style.css" id="_style.css" />\n<item media-type="application/xhtml+xml" href="cover.xhtml" id="_cover.xhtml" properties="svg" />\n<item media-type="application/xhtml+xml" href="nav.xhtml" id="_nav.xhtml" properties="nav" />\n<item media-type="application/x-dtbncx+xml" href="toc.ncx" id="_toc.ncx" />\n</manifest>\n<spine page-progression-direction="rtl" toc="_toc.ncx">\n<itemref idref="_cover.xhtml" linear="no" />\n<itemref idref="_nav.xhtml" />\n</spine>\n<guide>\n<reference type="cover" title="表紙" href="cover.xhtml" />\n<reference type="toc" title="目次" href="nav.xhtml" />\n<reference type="text" title="本文" href="bodymatter_0_0.xhtml" />\n</guide>\n</package>';
 //var kindleOPF ='<?xml version="1.0" encoding="utf-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="ja" unique-identifier="unique-id" prefix="rendition: http://www.idpf.org/vocab/rendition/# ebpaj: http://www.ebpaj.jp/" >\n<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">\n<!-- 作品名 -->\n<dc:title id="title">作品名１</dc:title>\n<meta refines="#title" property="file-as">セイレツヨウサクヒンメイカナ01</meta>\n<!-- 著者名 -->\n<dc:creator id="creator01">著作者名１</dc:creator>\n<meta refines="#creator01" property="role" scheme="marc:relators">aut</meta>\n<meta refines="#creator01" property="file-as"> セイレツヨウチョサクシャメイカナ 01</meta>\n<meta refines="#creator01" property="display-seq">1</meta>\n<dc:creator id="creator02">著作者名２</dc:creator>\n<meta refines="#creator02" property="role" scheme="marc:relators">aut</meta>\n<meta refines="#creator02" property="file-as"> セイレツヨウチョサクシャメイカナ 02</meta>\n<meta refines="#creator02" property="display-seq">2</meta>\n<!-- 出版社名 -->\n<dc:publisher id="publisher">出版社名</dc:publisher>\n<meta refines="#publisher" property="file-as"> セイレツヨウシュッパンシャメイカナ</meta>\n<!-- 言語 -->\n<dc:language>ja</dc:language>\n<!-- ファイルid -->\n<dc:identifier id="unique-id">urn:uuid:860ddf31-55a4-449a-8cc9-3c1837657a15</dc:identifier>\n<!-- 更新日 -->\n<meta property="dcterms:modified">2012-01-01T00:00:00Z</meta>\n<!-- Fixed-Layout Documents指定 -->\n<meta name="original-resolution" content="600x837" />\n<meta name="primary-writing-mode" content="horizontal-rl" />\n<meta name="book-type" content="comic" />\n<meta content="true" name="zero-gutter" />\n<meta content="true" name="zero-margin" />\n<meta content="none" name="orientation-lock" />\n<meta content="true" name="fixed-layout" />\n<meta content="false" name="region-mag" />\n<!-- etc. -->\n<meta property="ebpaj:guide-version">1.1</meta>\n</metadata>\n<manifest>\n<!-- navigation -->\n<item media-type="application/xhtml+xml" id="toc" href="nav.xhtml" properties="nav"/>\n<item media-type="application/x-dtbncx+xml" id="ncxtoc" href="toc.ncx"/>\n<!-- style -->\n<item media-type="text/css" id="fixed-layout-jp" href="style/fixed-layout-jp.css"/>\n<!-- image -->\n<item media-type="image/jpeg" id="cover" href="image/cover.jpg" properties="cover-image"/>\n<!-- xhtml -->\n<item media-type="application/xhtml+xml" id="p-cover" href="xhtml/p-cover.xhtml" properties="svg" fallback="cover"/>\n</manifest>\n<spine toc="ncxtoc" page-progression-direction="rtl">\n<itemref linear="yes" idref="p-cover" properties="rendition:page-spread-center"/>\n</spine>\n</package>';
 //ナビゲーション
 var navigation= '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE html>\n\n<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:ibooks="http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0" epub:prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0" xml:lang="ja" lang="ja">\n    <head>\n        <meta charset="utf-8" />\n        <link rel="stylesheet" href="style.css" type="text/css" />\n\n        <title>タイトル</title>\n        <style type="text/css">\nnav ol {list-style-type: none;}\n</style>\n    </head>\n    <body class="frontmatter" epub:type="frontmatter">\n        <nav id="toc" class="toc" epub:type="toc">\n<h2>目次</h2>\n<ol>\n<li>\n<a href="bodymatter_0_0.xhtml#toc_index_1"><span>このコンテンツについて</span></a></li>\n<li><a href="bodymatter_0_1.xhtml#toc_index_1"><span>一</span></a></li>\n</ol>\n</nav>\n<nav id="landmarks" class="landmarks" epub:type="landmarks" hidden="hidden">\n<h2>ガイド</h2>\n<ol>\n<li><a epub:type="cover" href="cover.xhtml"><span>表紙</span></a></li>\n<li><a epub:type="toc" href="nav.xhtml"><span>目次</span></a></li>\n<li><a epub:type="bodymatter" href="bodymatter_0_0.xhtml"><span>本文</span></a></li>\n</ol>\n</nav>\n    </body>\n</html>';
@@ -169,113 +170,91 @@ standardOPFxml.querySelector("meta[property='dcterms:modified']").textContent=to
 
 
 //manifest image
-//media-type="image/jpeg" id="i-001" href="image/i-001.jpg"
-var imgdf = standardOPFxml.createDocumentFragment();
+//画像ファイル名　imgFO.file_name
+//<item xmlns="http://www.idpf.org/2007/opf" media-type="image/png" href="cover.png" id="_cover.png" properties="cover-image"/>
+
 /*
 var ele = standardOPFxml.createElement("item");
+	ele.setAttribute("xmlns", "http://www.idpf.org/2007/opf");
 	ele.setAttribute("media-type", "image/jpeg");
-	ele.setAttribute("id", "i-002");
-	ele.setAttribute("href", "image/i-002.jpg");
+	ele.setAttribute("id", "_cover.png");
+	ele.setAttribute("href", "cover.png");
 */
+var imgdf = standardOPFxml.createDocumentFragment();
 //繰り返し用
+//本文の画像ファイルの分だけmanifestで宣言する。
+//http://www.idpf.org/2007/opf
 for (j = 0; j < imgFO.length; j++){
-imgFO[j].id="i-"+ ('0000' + (j+1) ).slice( -3 );
-if(imgFO[j].type=="image/jpeg"){imgFO[j].ext="jpg"};
-if(imgFO[j].type=="image/png"){imgFO[j].ext="png"};
-//svg: "image/svg+xml"
-//var item='\n<item media-type="image/jpeg" id="i-001" href="image/i-001.jpg"/>'
-//var itemxml = (new DOMParser()).parseFromString(item, 'text/xml');
-//var ele= standardOPFxml .importNode(itemxml.getElementById('i-001') , true);
-var	reference = standardOPFxml.getElementById('cover');
-var ele = reference.cloneNode(true);
-//	var ele = standardOPFxml.createElement("item");
+imgFO[j].id="_"+ imgFO[j].file_name;
+var ele = standardOPFxml.createElement("item");
+	ele.setAttribute("xmlns", "http://www.idpf.org/2007/opf");
 	ele.setAttribute("media-type", imgFO[j].type);
 	ele.setAttribute("id", imgFO[j].id);
-	ele.setAttribute("href", "image/"+imgFO[j].id+"."+imgFO[j].ext);
+	ele.setAttribute("href", imgFO[j].file_name);
 	 imgdf.appendChild(ele);
 }
-
 //ココまで繰り返す
+
 var	parent =standardOPFxml.querySelector("manifest");
-console.log(ele)
+//var	reference = standardOPFxml.getElementById('cover');
+var reference = standardOPFxml.createElement("item");
 //var	reference = standardOPFxml.getElementById('cover');
 //coverの書き換え properties="cover-image"
+	reference.setAttribute("xmlns", "http://www.idpf.org/2007/opf");
 	reference.setAttribute("media-type", coverFO.type);
-	reference.setAttribute("href", "image/"+"cover."+coverFO.ext);
+	reference.setAttribute("href", "cover."+coverFO.ext);
+	reference.setAttribute("id", "_cover."+coverFO.ext);
 	reference.setAttribute("properties", "cover-image");
+	imgdf.appendChild(reference);
+	parent.appendChild(imgdf);
 //coverFO.file_id+"."+coverFO.ext
-	parent.insertBefore(imgdf,reference.nextSibling);
+//	parent.insertBefore(imgdf,reference.nextSibling);
 //	parent.insertBefore(ele,reference.nextSibling);
 	console.log(parent);
 
 //manifest xhtml
-//<item media-type="application/xhtml+xml" id="p-001" href="xhtml/p-001.xhtml" properties="svg" fallback="i-001"/>
+//本文の文章をxhmlにして宣言する。
+//<item media-type="application/xhtml+xml" href="bodymatter_0_0.xhtml" id="_bodymatter_0_0.xhtml" />
 var xhtdf = standardOPFxml.createDocumentFragment();
 /*
 var xele = standardOPFxml.createElement("item");
 	xele.setAttribute("media-type", "application/xhtml+xml");
-	xele.setAttribute("id", "p-002");
-	xele.setAttribute("href", "xhtml/p-002.xhtml");
-	xele.setAttribute("properties", "svg");
-	xele.setAttribute("fallback", "i-002");
+	xele.setAttribute("id", "_bodymatter_0_0.xhtml");
+	xele.setAttribute("href", "bodymatter_0_0.xhtml");
 */
 //繰り返し用
-for (j = 0; j < imgFO.length; j++){
-imgFO[j].xhid="p-"+ ('0000' + (j+1) ).slice( -3 );
-//var xele = standardOPFxml.createElement("item");
-var	xreference = standardOPFxml.getElementById('p-cover');
-var xele = xreference.cloneNode(true);
-//コードを整形しようとしたが無理だった。
-//var item='\n<item media-type="application/xhtml+xml" id="p-001" href="xhtml/p-001.xhtml" properties="svg" fallback="i-001"/>'
-//var itemxml = (new DOMParser()).parseFromString(item, 'text/xml');
-//var xele= standardOPFxml .importNode(itemxml.getElementById('p-001') , true);
-
+splitmarkdown();
+for (j = 0; j < markFO.length; j++){
+	var xele = standardOPFxml.createElement("item");
+	xele.setAttribute("xmlns", "http://www.idpf.org/2007/opf");
 	xele.setAttribute("media-type", "application/xhtml+xml");
-	xele.setAttribute("id", imgFO[j].xhid);
-	xele.setAttribute("href", "xhtml/"+imgFO[j].xhid+".xhtml");
-	xele.setAttribute("properties", "svg");
-	xele.setAttribute("fallback", imgFO[j].id);
+	xele.setAttribute("id", "_bodymatter_0_"+j+".xhtml");
+	xele.setAttribute("href", "bodymatter_0_"+j+".xhtml");
 	 xhtdf.appendChild(xele);
 }
  //ココまで繰り返す
-var	xparent =standardOPFxml.querySelector("manifest");
-console.log(xele)
-//var	xreference = standardOPFxml.getElementById('p-cover');
-//	parent.appendChild(ele);
-//	xparent.insertBefore(xele,xreference.nextSibling);
-	xparent.insertBefore(xhtdf,xreference.nextSibling);
+ var	xparent =standardOPFxml.querySelector("manifest");
+	 	xparent.appendChild(xhtdf);
 	console.log(xparent);
 
 //spine
 //<itemref linear="yes" idref="p-001" properties="page-spread-right"/>
 var spinedf = standardOPFxml.createDocumentFragment();
-for (j = 0; j < imgFO.length; j++){
-var	sreference = standardOPFxml.querySelector("itemref[idref='p-cover']");
-var spele = sreference.cloneNode(true);
-//var spele = standardOPFxml.createElement("itemref");
-	spele.setAttribute("linear", "yes");
-	spele.setAttribute("idref", imgFO[j].xhid);
-//右綴じの場合
-if (document.getElementById("binding-ltr").checked){
-	if(j% 2 == 0){spele.setAttribute("properties", "page-spread-left")};
-	if(j% 2 == 1){spele.setAttribute("properties", "page-spread-right")};}
-
-//左綴じの場合
-else{
-	if(j% 2 == 0){spele.setAttribute("properties", "page-spread-right")};
-	if(j% 2 == 1){spele.setAttribute("properties", "page-spread-left")};}
+for (j = 0; j < markFO.length; j++){
+	var spele = standardOPFxml.createElement("itemref");
+	spele.setAttribute("xmlns", "http://www.idpf.org/2007/opf");
+	spele.setAttribute("idref", "_bodymatter_0_"+j+".xhtml");
 	 spinedf.appendChild(spele);
 }
-
 var	sparent =standardOPFxml.querySelector("spine");
 console.log(spele)
-//var	sreference = standardOPFxml.querySelector("itemref[idref='p-cover']");
-	sparent.insertBefore(spinedf,sreference.nextSibling);
+sparent.appendChild(spinedf);
 	console.log(sparent);
 	
 //XMLシリアライズ
 standardOPFS = (new XMLSerializer()).serializeToString(standardOPFxml);
 console.log(standardOPFxml);
+console.log(standardOPFS);
 standardOPFS=vkbeautify.xml(standardOPFS);
 //2重実行の防止
 return standardOPFS;
@@ -283,7 +262,7 @@ return standardOPFS;
 function rewriteNAV(){
 //ナビゲーションファイル
 var navigationXml = (new DOMParser()).parseFromString(navigation, 'text/xml');
-navigationXml.querySelector("title").textContent=$("#title").val();
+navigationXml.querySelector("title").textContent=document.getElementById("title").value;
 navigationXml.querySelectorAll("li")[0].childNodes[0].textContent=$("#covertext").val();
 /*単体のナビゲーション編集
 navigationXml.querySelectorAll("li")[1].childNodes[0].textContent=$("#navtext1").val();
@@ -362,17 +341,23 @@ return ncxS;
 }
 function rewrite(){
 //表紙XHTML　coverxhtml
+//表紙の横のサイズ　coverFO.width;
+//表紙の縦のサイズ　coverFO.height;
+//document.getElementById("title").value;
+//document.getElementById("author1").value;
+var booktitle = document.getElementById("title").value;
 var coverxhtmlXml = (new DOMParser()).parseFromString(coverxhtml, 'text/xml');
-coverxhtmlXml.querySelector('title').textContent=$("#title").val();
+coverxhtmlXml.querySelector('title').textContent=booktitle;
+coverxhtmlXml.querySelector("body").setAttribute('title', booktitle)
 var viewport = coverxhtmlXml.querySelector("meta[content]");
 var svg = coverxhtmlXml.querySelector("svg[viewBox]");
 var imagesize = coverxhtmlXml.querySelector("image");
-viewport.setAttribute("content", 'width='+$("#imgwidth").val() +' ,'+'height='+$("#imgheight").val());
-svg.setAttribute("viewBox", '0 0 '+$("#imgwidth").val() +' '+$("#imgheight").val());
-imagesize.setAttribute("width",$("#imgwidth").val());
-imagesize.setAttribute("height",$("#imgheight").val());
+viewport.setAttribute("content", 'width='+coverFO.width +' ,'+'height='+coverFO.height);
+svg.setAttribute("viewBox", '0 0 '+coverFO.width +' '+coverFO.height);
+imagesize.setAttribute("width",coverFO.width);
+imagesize.setAttribute("height",coverFO.height);
 //画像ファイル名の設定
-imagesize.setAttributeNS("http://www.w3.org/1999/xlink","href","../image/cover."+coverFO.ext);
+imagesize.setAttributeNS("http://www.w3.org/1999/xlink","href","cover."+coverFO.ext);
 
 coverxhtml = (new XMLSerializer()).serializeToString(coverxhtmlXml);
 //console.log(viewport.content);
@@ -407,9 +392,11 @@ jQuery(function($) {
       return;
   }
   $("#demo").click(function () {
+var booktitle =document.getElementById("title").value;
+var bookauthor = document.getElementById("author1").value;
 standardOPFS=rewriteOPF();
-navigationS = rewriteNAV();
-ncxS=rewriteNCX();
+//navigationS = rewriteNAV();
+//ncxS=rewriteNCX();
 rewrite();
 var zip = new JSZip();
 zip.file("mimetype", "application/epub+zip");
@@ -417,21 +404,21 @@ var meta = zip.folder("META-INF");
 meta.file("container.xml", containerXML);
 var item = zip.folder("OEBPS");
 item.file("content.opf", standardOPFS);
-item.file("nav.xhtml", navigationS);
-item.file("toc.ncx", ncxS);
+//item.file("nav.xhtml", navigationS);
+//item.file("toc.ncx", ncxS);
 item.file("style.css",css_style);
 item.file("template.css",css_templete);
 item.file("cover.xhtml",coverxhtml);
 //item.file("bodymatter_0_0.xhtml",pagexhtml);
 //マークダウンをパースしてからhtmlファイルを書き込む。
-for (j = 0; j < textFO.length; j++){
-xhtml.file("bodymatter_0_"+j+".xhtml", pages[j]);
+for (i = 0; i < pages.length; i++){
+item.file("bodymatter_0_"+ i +".xhtml", pages[i]);
 }
 //表紙画像を書き込む
-img.file("cover."+coverFO.ext, coverFO.data.split('base64,')[1], {base64: true});
+item.file("cover."+coverFO.ext, coverFO.data.split('base64,')[1], {base64: true});
 //画像のファイル名とデータを取得して書き込む。
 for (j = 0; j < imgFO.length; j++){
-img.file("i-"+ ('0000' + (j+1) ).slice( -3 )+"."+imgFO[j].ext, imgFO[j].data.split('base64,')[1], {base64: true});
+item.file(imgFO[j].file_name, imgFO[j].data.split('base64,')[1], {base64: true});
 }
 zip.generateAsync({type:"blob"})
 .then(function(content) {
