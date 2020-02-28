@@ -255,7 +255,7 @@ sparent.appendChild(spinedf);
 standardOPFS = (new XMLSerializer()).serializeToString(standardOPFxml);
 console.log(standardOPFxml);
 console.log(standardOPFS);
-standardOPFS=vkbeautify.xml(standardOPFS);
+//standardOPFS=vkbeautify.xml(standardOPFS);
 //2重実行の防止
 return standardOPFS;
 }
